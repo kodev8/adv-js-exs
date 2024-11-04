@@ -1,0 +1,13 @@
+{
+  "name": "day1",
+  "version": "1.0.0",
+  "description": "We start by creating an object called `student` with three properties:\r    - `name`: A string with the value `\"Marie\"`\r    - `age`: A number with the value `20`\r    - `courses`: An empty array `[]` to store the courses the student is enrolled in",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
