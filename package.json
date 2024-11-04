@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "We start by creating an object called `student` with three properties:\r    - `name`: A string with the value `\"Marie\"`\r    - `age`: A number with the value `20`\r    - `courses`: An empty array `[]` to store the courses the student is enrolled in",
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "start": "node main.js",
+    "dev": "nodemon main.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
+  }
 }

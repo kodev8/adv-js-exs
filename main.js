@@ -1,74 +1,89 @@
-// 1. **Create an object `student`** with the following properties:
-//     - `name`: "Marie"
-//     - `age`: 20
-//     - `courses`: an empty array `[]`
-// 2. **Access and modify the object's values**:
-//     - Change the `age` property to 21.
-//     - Add a new property `grade` with the value "A".
-// 3. **Work with the `courses` array of the object**:
-//     - Add the elements "Math," "Physics," and "Chemistry" to the `courses` array using the `push` method.
-//     - Use the `indexOf` method to find the index of "Physics" in the `courses` array.
-//     - Use the `slice` method to create a new array containing the first two elements of `courses`.
-// 4. **Display the results**:
-//     - Log the complete `student` object with the modifications to the console.
-//     - Display the index of "Physics."
-//     - Display the new array created with `slice`.
+import express from 'express';
 
-// ---
+const app = express();
+const PORT = 3000;
 
-// 1. **Create a `User` class** with the following properties and methods:
-//     - Properties:
-//         - `firstName`: String
-//         - `lastName`: String
-//         - `age`: Number
-//         - `email`: String
-//         - `admin`: Boolean
-//     - Methods:
-//         - `getUserInfo()`: Returns a string containing the user's full name and age in the format "Full Name: [firstName] [lastName], Age: [age]".
-//         - `setAge(newAge)`: Modifies the user's `age` property to the specified `newAge`.
-// 2. **Test the `User` class**:
-//     - Create an instance of the `User` class.
-//     - Use the `getUserInfo()` method to display the user's full name and age.
-//     - Use the `setAge(newAge)` method to update the user's age, then use `getUserInfo()` again to verify the change.
+app.use(express.json());
 
-const student = { 
-    name: "Marie",
-    age: 20,
-    courses: []
-}
+const statusCodes = {
+    OK: 200,
+    CREATED: 201,
+    NO_CONTENT: 204,
+    BAD_REQUEST: 400,
+    NOT_FOUND: 404
+};
 
-student.age = 21;
-student.grade = "A";
-
-student.courses.push("Math", "Physics", "Chemistry");
-const physicsIndex = student.courses.indexOf("Physics");
-const firstTwoCourses = student.courses.slice(0, 2);
-
-console.log(student);
-console.log(physicsIndex);
-console.log(firstTwoCourses);
-
-class User {
-    constructor(firstName, lastName, age, email, admin) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.email = email;
-        this.admin = admin;
+const products = [
+    {
+        id: 1,
+        name: 'Product 1',
+        price: 100
+    },
+    {
+        id: 2,
+        name: 'Product 2',
+        price: 200
     }
+];
 
-    getUserInfo() {
-        return `Full Name: ${this.firstName} ${this.lastName}, Age: ${this.age}`;
+app.get('/health', (req, res) => {
+    res.status(statusCodes.OK).json({ message: 'Server is up and running' });
+});
+
+app.get('/products', (req, res) => {
+    res.status(statusCodes.OK).json(products);
+});
+
+app.get('/products/:id', (req, res) => {
+    const { id } = req.params;
+    const product = products.find(product => product.id === parseInt(id));
+    if (!product) {
+        res.status(statusCodes.NOT_FOUND).json({ error: 'Product not found' });
+        return;
     }
+    res.status(statusCodes.OK).json(product);
+});
 
-    setAge(newAge) {
-        this.age = newAge;
+app.post('/products', (req, res) => {
+    const { id, name, price } = req.body;
+    // did not include error handling for types for simplicity
+    if (!id || !name || !price) {
+        res.status(statusCodes.BAD_REQUEST).json({ error: 'Missing required fields' });
+        return;
     }
-}
+    products.push({ id, name, price });
+    res.status(statusCodes.CREATED).json({
+        message: 'Product created successfully'
+    })
+});
 
-const user = new User("John", "Doe", 30, "johndoe@email.com", true);
-console.log(user.getUserInfo());
+app.put('/products/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, price } = req.body;
+    const productIndex = products.findIndex(product => product.id === parseInt(id));
+    if (productIndex === -1) {
+        res.status(statusCodes.NOT_FOUND).json({ error: 'Product not found' });
+        return;
+    }
+    products[productIndex] = { ...products[productIndex], name, price };
+    res.status(statusCodes.OK).json({
+        message: 'Product updated successfully',
+        product: products[productIndex]
+    });
+});
 
-user.setAge(35);
-console.log(user.getUserInfo());
- 
+app.delete('/products/:id', (req, res) => {
+    // did not include error handling for unique ids for simplicity
+    const { id } = req.params;
+    const productIndex = products.findIndex(product => product.id === parseInt(id));
+    if (productIndex === -1) {
+        res.status(statusCodes.NOT_FOUND).json({ error: 'Product not found' });
+        return;
+    }
+    products.splice(productIndex, 1);
+    res.status(statusCodes.NO_CONTENT).json();
+});
+
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
