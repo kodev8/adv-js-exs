@@ -4,15 +4,16 @@ import statusCodes from '../constants/statusCodes';
 import {
     productValidator,
     productParamValidator,
+    orderBodyValidator,
 } from '../middleware/productValidator';
 
 const productService = new ProductService();
 
 const addProduct = async (req: Request, res: Response): Promise<Response> => {
-    const { name, price, desc } = req.body;
+    const { name, price, desc, stock} = req.body;
 
     try {
-        await productService.addProduct(name, desc, price);
+        await productService.addProduct(name, desc, price, stock);
     } catch (error) {
         return res.status(statusCodes.serverError).json({
             message: 'Unable to add product',
@@ -77,6 +78,39 @@ const getProduct = async (req: Request, res: Response): Promise<Response> => {
         product,
     });
 };
+
+const addToCart = async (req: Request, res: Response): Promise<Response> => {
+    const { productId, userId } = req.body;
+
+    try {
+        await productService.addToCart(productId, userId);
+    } catch (error) {
+        return res.status(statusCodes.serverError).json({
+            message: 'Unable to add product to cart',
+        });
+    }
+
+    return res.status(statusCodes.success).json({
+        message: 'Product added to cart successfully',
+    });
+}
+
+const createOrder = async (req: Request, res: Response): Promise<Response> => {
+    const { productId, userId, quantity } = req.body;
+
+    try {
+        await productService.makeOrder(productId, userId, quantity);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(statusCodes.serverError).json({
+            message: 'Unable to make order',
+        });
+    }
+
+    return res.status(statusCodes.success).json({
+        message: 'Order made successfully',
+    });
+}
 const productRoutes = Router();
 
 productRoutes.post('/', productValidator, addProduct);
@@ -89,5 +123,7 @@ productRoutes.put(
 );
 productRoutes.get('/', getProducts);
 productRoutes.get('/:productId', productParamValidator, getProduct);
+productRoutes.post('/cart', orderBodyValidator(["productId", "userId"]), addToCart);
+productRoutes.post('/order', orderBodyValidator(["productId", "userId", "quantity"]), createOrder);
 
 export default productRoutes;

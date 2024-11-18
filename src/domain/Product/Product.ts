@@ -4,6 +4,7 @@ export interface Prouduct {
     name: string;
     desc: string;
     price: number;
+    stock: number;
     created_at?: Date;
     updated_at?: Date;
 }
@@ -15,6 +16,7 @@ const productSchema: Schema = new Schema(
         name: { type: String, required: [true, 'name is required'] },
         desc: { type: String, required: [true, 'desc is required'] },
         price: { type: Number, required: [true, 'price is required'] },
+        stock: { type: Number, default: 0 },
     },
     {
         timestamps: {
