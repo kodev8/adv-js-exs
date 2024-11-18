@@ -5,10 +5,23 @@ const db = require("./db")
 const port = 3000
 
 const Observable = require("./Observable")
-const logSubscriber = require("./subscribers/logSubscriber")
-const notifySubscriber = require("./subscribers/notifySubscriber")
-const emailSubscriber = require("./subscribers/emailSubscriber")
-const databaseLogSubscriber = require("./subscribers/databaseLogSubscriber")
+const LogSubscriber = require("./subscribers/logSubscriber")
+const NotifySubscriber = require("./subscribers/notifySubscriber")
+const EmailSubscriber = require("./subscribers/emailSubscriber")
+const DatabaseSubscriber = require("./subscribers/databaseSubscriber")
+
+const logSubscriber = new LogSubscriber()
+const notifySubscriber = new NotifySubscriber()
+const emailSubscriber = new EmailSubscriber()
+const databaseSubscriber = new DatabaseSubscriber()
+
+
+const observable = new Observable() 
+
+observable.subscribe(logSubscriber.listen.bind(logSubscriber))
+observable.subscribe(notifySubscriber.listen.bind(notifySubscriber))
+observable.subscribe(emailSubscriber.listen.bind(emailSubscriber))
+observable.subscribe(databaseSubscriber.listen.bind(databaseSubscriber))
 
 app.post("/", (req, res) => {
 	const { name, createdAt } = req.body
@@ -20,8 +33,7 @@ app.post("/", (req, res) => {
 	const newData = { name, createdAt }
 
 	console.log("Resource created:", newData)
-
-	// Notify all subscribers
+	observable.notify(newData)
 
 	res.status(201).json({ message: "Resource created", data: newData })
 })
