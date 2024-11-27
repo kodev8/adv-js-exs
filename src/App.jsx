@@ -1,21 +1,21 @@
 import "./App.css"
 
 import ButtonComp from "./components/ButtonComp"
-// import { useContext } from "react"
-//import { CountContext } from "./context/CountContext"
+import { useContext } from "react"
+import { CountContext } from "./context/CountContext"
 import HeaderComp from "./components/HeaderComp"
 
 function App() {
-	//const { count, setCount } = useContext(CountContext)
+	const { count, setCount } = useContext(CountContext)
 
 	const user = null // change this to later to the use context user ❗
 
-	// const handleClick = () => {
-	// 	setCount((prev) => prev + 1)
-	// }
+	const handleClick = () => {
+		setCount((prev) => prev + 1)
+	}
 
-	//const handleLogIn = () => {
-	// }
+	const handleLogIn = () => {
+	}
 
 	return (
 		<main
@@ -29,8 +29,8 @@ function App() {
 			}}
 		>
 			<HeaderComp />
-			<ButtonComp text="add" onclick={() => true} />
-			Your result is dynamic count here ...
+			<ButtonComp text="add" onclick={handleClick} />
+			{count}
 			{/* You'll need another button comp here later */}
 			{user && <div className="alert">You are now logged in !!!</div>}
 		</main>
