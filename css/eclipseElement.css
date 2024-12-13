@@ -3,15 +3,12 @@
     width: 318px;
     height: 318px;
     position: absolute;
-    left: 0;
     z-index: 0;
 }
-
 
 .eclipseElement.primary {
     background-color: #cc68fa;
 }
-
 
 .eclipseElement.secondary {
     background-color: var(--secondary-color)
