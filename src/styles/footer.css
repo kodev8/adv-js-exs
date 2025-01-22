@@ -1,0 +1,26 @@
+.footer {
+    background-color: var(--footer-bg);
+    padding: var(--space-size);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+}
+
+.footer a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.footer img {
+    max-width: 28px;
+}
+
+.footer p {
+    margin-top: 0.5em;
+    font-size: 12px;
+    transform: translateX(-5px);
+}

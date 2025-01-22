@@ -1,0 +1,22 @@
+{
+    "title": "Valeurs de KeyNest",
+    "description": "Bienvenue sur KeyNest, votre plateforme de référence pour trouver des logements uniques et accueillants à travers Paris et ses environs. Que vous recherchiez un studio confortable près de Montmartre, une suite familiale à Montparnasse, ou un loft luxueux à La Défense, nous avons une large gamme d'options adaptées à vos besoins",
+    "accordions": [
+        {
+            "title": "Fiabilité",
+            "content": "Les annonces publiées sur KeyNest garantissent une fiabilité totale. Les photos correspondent aux logements, et toutes les informations sont régulièrement vérifiées par nos équipes."
+        },
+        {
+            "title": "Service",
+            "content": "Nos équipes sont à votre disposition pour vous offrir une expérience parfaite. N'hésitez pas à nous contacter si vous avez des questions."
+        },
+        {
+            "title": "Respect",
+            "content": "La gentillesse est l'une des valeurs fondamentales de KeyNest. Tout comportement discriminatoire ou trouble du voisinage entraînera l'exclusion de notre plateforme."
+        },
+        {
+            "title": "Sécurité",
+            "content": "La sécurité est la priorité absolue de Kasa. Pour nos hôtes comme pour nos voyageurs, chaque logement répond aux critères de sécurité établis par nos services. Nous organisons également des ateliers sur la sécurité domestique pour nos hôtes."
+        }
+    ]
+}

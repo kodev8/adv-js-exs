@@ -1,0 +1,23 @@
+.change-language {
+    display: flex;
+    padding: 0.5em;
+}
+
+.change-language button {
+    background-color: transparent;
+    border: none;
+    color: var(--font-clr);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 0.5em;
+}
+
+.change-language button.selected {
+    background-color: var(--main-clr);
+    color: var(--font-clr);
+}

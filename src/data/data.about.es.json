@@ -1,0 +1,22 @@
+{
+    "title": "Valores de KeyNest",
+    "description": "Bienvenido a KeyNest, tu plataforma de referencia para encontrar alojamientos únicos y acogedores en todo París y sus alrededores. Tanto si busca un acogedor estudio cerca de Montmartre, una suite familiar junto a Montparnasse o un lujoso loft en La Défense, tenemos una amplia gama de opciones adaptadas a sus necesidades.",
+    "accordions": [
+        {
+            "title": "Fiabilidad",
+            "content": "Los listados publicados en KeyNest garantizan una fiabilidad total. Las fotos coinciden con los alojamientos, y toda la información es verificada regularmente por nuestros equipos."
+        },
+        {
+            "title": "Service",
+            "content": "Nuestros equipos están a su disposición para ofrecerle una experiencia perfecta. No dude en ponerse en contacto con nosotros si tiene alguna pregunta."
+        },
+        {
+            "title": "Respect",
+            "content": "La amabilidad es uno de los valores fundamentales de KeyNest. Cualquier comportamiento discriminatorio o molestia al vecindario resultará en la exclusión de nuestra plataforma."
+        },
+        {
+            "title": "Seguridad",
+            "content": "La seguridad es la máxima prioridad de Kasa. Tanto para nuestros anfitriones como para los viajeros, cada alojamiento cumple los criterios de seguridad establecidos por nuestros servicios. También organizamos talleres de seguridad doméstica para nuestros anfitriones."
+        }
+    ]
+}

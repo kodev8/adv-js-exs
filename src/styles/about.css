@@ -1,0 +1,50 @@
+.about section {
+    position: relative;
+}
+
+.about article {
+    padding: 1em;
+    color: var(--footer-bg);
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
+}
+
+.about h1 {
+    text-align: center;
+    color: var(--footer-bg);
+    margin-bottom: 0.75em;
+}
+
+.about section img {
+    object-fit: cover;
+    aspect-ratio: 16 / 7;
+    max-height: 230px;
+    width: 100%;
+    object-position: bottom;
+}
+
+.about-container {
+    padding: var(--space-size);
+    max-width: 900px;
+    margin: auto;
+}
+
+.about section::after {
+    background: #fcfcfc69;
+    background: linear-gradient(180deg, hsla(0, 0%, 99%, 0), #000000ab);
+    content: '';
+    height: 99%;
+    content: '';
+    mix-blend-mode: darken;
+    position: absolute;
+    width: 100%;
+    inset: 0;
+}
+
+/* larger screens */
+@media only screen and (min-width: 768px) {
+    .about article {
+        font-size: 22px;
+    }
+}

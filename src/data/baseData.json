@@ -1,0 +1,17 @@
+{
+    "home_banner_title": {
+        "en": "Your key to the perfect nest",
+        "fr": "Votre clé pour le nid parfait",
+        "es": "Tu clave para el nido perfecto"
+    },
+    "home_nav": {
+        "en": "Home",
+        "fr": "Accueil",
+        "es": "Inicio"
+    },
+    "about_nav": {
+        "en": "About",
+        "fr": "À propos",
+        "es": "Sobre nosotros"
+    }
+}

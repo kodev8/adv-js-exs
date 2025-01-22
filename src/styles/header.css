@@ -1,0 +1,124 @@
+.header {
+    display: flex;
+    margin: auto;
+    max-width: 1240px;
+    padding: var(--space-size);
+}
+
+.header nav {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header nav a {
+    color: var(--main-clr);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 50px;
+    display: block;
+}
+
+.header nav a.active {
+    text-decoration: underline;
+}
+
+.header nav img {
+    max-width: 41px;
+}
+
+.header nav ul {
+    display: flex;
+    gap: 2em;
+    list-style: none;
+    align-items: flex-start;
+}
+
+.header nav ul .language-select {
+    align-self: flex-start;
+    position: relative;
+}
+
+.header .header-logo {
+    display: flex;
+    align-items: center;
+    font-size: 52px;
+    font-weight: 500;
+}
+
+.header .header-logo span {
+    color: var(--main-clr);
+    display: none;
+}
+
+/* larger screens */
+@media only screen and (min-width: 768px) {
+    .header .header-logo span {
+        color: var(--main-clr);
+        display: block;
+    }
+
+    .header nav a {
+        font-size: 1.2em;
+    }
+}
+
+/* Add these styles for the language selector container */
+.header nav li:last-child {
+    position: relative;
+}
+
+/* Style for the language selector button */
+.header .language-select-button {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: var(--main-clr);
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    color: var(--font-clr);
+}
+
+/* Position the dropdown menu */
+.header .language-select .accordion-body {
+    position: absolute;
+    padding: 0 !important;
+    top: 110%;
+    right: 0;
+    z-index: 100;
+    min-width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style dropdown buttons */
+.header .language-select button {
+    width: 100%;
+    padding: 0.5em 1em;
+    border: none;
+    background: none;
+    color: var(--font-clr);
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+}
+
+
+.header .language-select .language-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.header .language-select .language-dropdown * {
+    width: 100%;
+    padding: 1em;
+    background-color: #adadad;
+}
+
+.header .language-select .language-dropdown *:hover {
+    background-color: var(--main-clr);
+    color: #fff;
+    cursor: pointer;
+}

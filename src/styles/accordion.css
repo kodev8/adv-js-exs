@@ -1,0 +1,84 @@
+.accordion-about {
+    margin: auto;
+    max-width: 1023px;
+    margin-top: 1em;
+}
+
+.accordion-about .accordion-about-header {
+    background-color: var(--main-clr);
+    font-size: 13px;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.accordion-about:first-child {
+    margin-top: 0;
+}
+
+.accordion-about .accordion-about-header h2 {
+    font-weight: 400;
+}
+
+.accordion-item img,
+.accordion-about img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+    transition: rotate 0.27s ease-in-out;
+}
+
+.accordion-about .accordion-about-header button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.accordion-about .accordion-about-body {
+    background-color: #f6f6f6;
+    color: var(--footer-bg);
+    font-size: 13px;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0 16px;
+    position: relative;
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+    transition: all 0.2s ease-out;
+    z-index: -1;
+}
+
+.accordion-about.active .accordion-about-body {
+    max-height: 86px;
+    padding: 18px 16px 12px;
+}
+
+.accordion-item.active img,
+.accordion-about.active img {
+    rotate: 180deg;
+}
+
+/* larger screens */
+@media only screen and (min-width: 768px) {
+    .accordion-about .accordion-about-body,
+    .accordion-about .accordion-about-header {
+        font-size: 16px;
+    }
+}
+
+.accordion-item:focus {
+    outline: 2px solid var(--primary-color, #000);
+    outline-offset: 2px;
+}
+
+/* Remove outline when using mouse */
+.accordion-item:focus:not(:focus-visible) {
+    outline: none;
+}
