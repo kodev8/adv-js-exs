@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "title": "Project 1",
+        "description": "This is a test project",
+        "userId": "1",
+        "bg": "blue"
+    },
+    {
+        "id": "2",
+        "title": "Project 2",
+        "description": "This is a test project 2",
+        "userId": "2",
+        "bg": "red"
+    }
+]
