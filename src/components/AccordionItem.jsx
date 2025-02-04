@@ -3,14 +3,15 @@ import { useState, useRef } from 'react';
 function AccordionItem({
     title,
     children,
-    className,
-    closeOnBlur,
+    className = "",
+    closeOnBlur = false,
     baseClass = 'accordion',
     id,
+    testid
 }) {
     const [isActive, setIsActive] = useState(false);
     const buttonRef = useRef(null);
-
+    
     const toggleAccordion = () => {
         setIsActive(!isActive);
     };
@@ -35,6 +36,8 @@ function AccordionItem({
         <div
             key={id}
             ref={buttonRef}
+            data-testid={testid}
+            id={id}
             tabIndex={0}
             role="button"
             className={`${className} ${

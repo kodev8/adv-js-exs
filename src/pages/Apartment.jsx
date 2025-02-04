@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import apartmentsData from '../data/data.json';
-import { RelatedApts } from '../components/RelatedApts';
+import fetchApartment from '~/services/apartment.service';
+import { RelatedApts } from '~/components/RelatedApts';
 import AccordionItem from '~/components/AccordionItem';
-import useLanguage from '../hooks/useLanguage';
+import useLanguage from '~/hooks/useLanguage';
 import ReactLoading from 'react-loading';
 
 function ApartmentFallback() {
@@ -23,10 +23,14 @@ function Apartment() {
     const { language } = useLanguage();
 
     useEffect(() => {
-        const foundApartment = apartmentsData.find((apt) => apt.id === id);
-        setApartment(foundApartment);
-        setLoading(false);
-        setCurrentImageIndex(0);
+        const fetchWrapper = async () => {
+            const foundApartment = await fetchApartment(id);
+            setApartment(foundApartment);
+            setLoading(false);
+            setCurrentImageIndex(0);
+        }
+        fetchWrapper();
+
     }, [id]);
 
     const handleImageTransition = (newIndex) => {
@@ -147,11 +151,12 @@ function Apartment() {
         <main>
             <div className="carousel">
                 <div
+                    data-testid="carousel-item-overlay"
                     onClick={() => setIsModalOpen(true)}
                     className="carousel-item-overlay"
                 ></div>
 
-                <div className="carousel-track">
+                <div data-testid="carousel-track" className="carousel-track">
                     {apartment.pictures.map((picture, index) => (
                         <div
                             key={index}
@@ -175,6 +180,7 @@ function Apartment() {
                             }}
                         >
                             <img
+                                className="carousel-image"
                                 src={picture}
                                 alt={`${apartment.title[language]} - ${index + 1}`}
                             />
@@ -198,6 +204,7 @@ function Apartment() {
                                 disabled={isTransitioning}
                             >
                                 <img
+                                    
                                     src="/assets/arrow_forward.png"
                                     alt="forward arrow"
                                 />
@@ -224,12 +231,13 @@ function Apartment() {
             </div>
 
             {isModalOpen && (
-                <div className="modal-overlay" onClick={handleCloseModal}>
+                <div  data-testid="modal-overlay" className="modal-overlay" onClick={handleCloseModal}>
                     <div
                         className="modal-content"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
+                            data-testid="modal-close-button"
                             className="modal-close"
                             onClick={handleCloseModal}
                         >
@@ -243,6 +251,7 @@ function Apartment() {
                             {apartment.pictures.length > 1 && (
                                 <>
                                     <button
+                                        data-testid="modal-back-arrow"
                                         className="modal-back-arrow"
                                         onClick={previousImage}
                                         disabled={isTransitioning}
@@ -253,6 +262,7 @@ function Apartment() {
                                         />
                                     </button>
                                     <button
+                                        data-testid="modal-forward-arrow"
                                         className="modal-forward-arrow"
                                         onClick={nextImage}
                                         disabled={isTransitioning}
@@ -270,7 +280,7 @@ function Apartment() {
                                 {apartment.pictures.map((_, index) => (
                                     <button
                                         key={index}
-                                        className={`modal-indicator ${
+                                        className={`modal-indicah2tor ${
                                             index === currentImageIndex
                                                 ? 'active'
                                                 : ''
@@ -289,7 +299,7 @@ function Apartment() {
             )}
 
             <article className="apartment">
-                <h2>{apartment.title[language]}</h2>
+                <h2 data-testid="apartment-title">{apartment.title[language]}</h2>
                 <p>{apartment.location}</p>
                 <div className="tags-container">
                     {apartment.tags.map((tag, index) => (

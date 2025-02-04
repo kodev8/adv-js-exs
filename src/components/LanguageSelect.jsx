@@ -9,9 +9,10 @@ function LanguageSelect() {
             className="language-select"
             title={language.toUpperCase()}
             closeOnBlur={true}
+            testid="language-select-accordion-test"
         >
             {({ setIsActive }) => (
-                <div role="list" className="language-dropdown">
+                <div role="list" className="language-dropdown" data-testid="language-dropdown">
                     {allLanguages.map((lang) => (
                         <span
                             key={lang}
